@@ -1,0 +1,9 @@
+body {
+    height: 100%;
+}
+
+.quiz-area {
+    text-align: center;
+    background-color: aliceblue;
+    height: auto;
+}
