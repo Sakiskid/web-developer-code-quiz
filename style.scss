@@ -1,0 +1,32 @@
+$color-base: #1F2126;
+$color-primary: #F21326;
+$color-secondary: #D91E50;
+$color-complimentary-primary: #2291F2;
+$color-complimentary-secondary: #F2B544;
+
+$font-fancy: 'Crimson Text', serif;
+
+body {
+    background-color: $color-base;
+    height: 100%;
+}
+
+h1 {
+    font-family: $font-fancy;
+}
+
+.quiz-area {
+    text-align: center;
+    margin-top: 20vh;
+    background-color: $color-complimentary-primary;
+    height: 50vh;
+    border-radius: 30px;
+}
+
+.btn {
+    background-color: $color-complimentary-secondary;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    margin-top: 10px;
+}

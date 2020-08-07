@@ -1,9 +1,24 @@
 body {
-    height: 100%;
+  background-color: #1F2126;
+  height: 100%;
+}
+
+h1 {
+  font-family: "Crimson Text", serif;
 }
 
 .quiz-area {
-    text-align: center;
-    background-color: aliceblue;
-    height: auto;
+  text-align: center;
+  margin-top: 20vh;
+  background-color: #2291F2;
+  height: 50vh;
+  border-radius: 30px;
+}
+
+.btn {
+  background-color: #F2B544;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
 }
