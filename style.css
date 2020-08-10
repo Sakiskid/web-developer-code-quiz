@@ -1,8 +1,12 @@
 #quiz-area, #game-over {
   height: 60vh;
   margin-top: 20vh;
-  background-color: #2291F2;
+  background: linear-gradient(124deg, #2291f2 0%, #1c6fb6 100%);
   border-radius: 30px;
+}
+
+header {
+  color: #D91E50;
 }
 
 body {

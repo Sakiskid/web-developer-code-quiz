@@ -16,12 +16,13 @@
 // ANCHOR DOM Elements & Variables
 var quizAreaEl = document.getElementById("quiz-area");
 var gameOverEl = document.getElementById("game-over");
-var startButtonEl = document.getElementById("buttons-menu__start");
-var menuButtonsEl = document.getElementById("buttons-menu");
-var questionEl = document.getElementById("quiz-question");
-var descriptionTextEl = document.getElementById("description-text");
 var answerButtonsWrapperEl = document.getElementById("buttons-answers");
 var answerButtonsEl = document.getElementsByClassName("btn-answer");
+var descriptionTextEl = document.getElementById("description-text");
+var menuButtonsEl = document.getElementById("buttons-menu");
+var questionEl = document.getElementById("quiz-question");
+var startButtonEl = document.getElementById("buttons-menu__start");
+var 
 
 var score = 0;
 var questionWorth = 10;

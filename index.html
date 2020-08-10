@@ -13,25 +13,30 @@
 </head>
 
 <body>
-  <div class="container">
 
+  <header class="text-center">
+    <h2>Time Left: <span id="time-remaining">999</span></h2>
+
+  </header>
+
+  <div class="container">
     <!-- Main Game Area -->
     <main class="row" id="quiz-area">
       <div class="col h-100">
 
-        <!-- Header -->
-        <header class="row h-25">
+        <!-- Title Text -->
+        <section class="row h-25">
           <div class="col">
             <h1 id="quiz-question">Web Development Coding Quiz!</h1>
           </div>
-        </header>
+        </section>
 
         <!-- Description Text -->
-        <div class="row h-25">
+        <section class="row h-25">
           <div class="col">
             <p id="description-text">Press start to start the quiz!</p>
           </div>
-        </div>
+        </section>
 
         <!-- Buttons -->
         <section class="h-50" id="buttons-wrapper">
@@ -58,9 +63,11 @@
     </main>
 
     <!-- Game Over Screen -->
-    <div class="row" id="game-over">
-      <div class="col">
-        <h1 class="mt-2">Game Over!</h1>
+    <div id="game-over">
+      <div class="row">
+        <div class="col">
+          <h1 class="mt-2">Game Over!</h1>
+        </div>
       </div>
     </div>
 

@@ -3,14 +3,20 @@ $color-primary: #F21326;
 $color-secondary: #D91E50;
 $color-complimentary-primary: #2291F2;
 $color-complimentary-secondary: #F2B544;
+$gradient-complimentary-primary: linear-gradient(124deg, rgba(34,145,242,1) 0%, rgba(28,111,182,1) 100%);
 
 $font-fancy: 'Crimson Text', serif;
 
 %game-background {
     height: 60vh;
     margin-top: 20vh;
-    background-color: $color-complimentary-primary;
+    // background-color: $color-complimentary-primary;
+    background: $gradient-complimentary-primary;
     border-radius: 30px;
+}
+
+header {
+    color: $color-secondary;
 }
 
 body {
@@ -32,8 +38,10 @@ h1 {
     @extend %game-background;
     text-align: center;
     display: none;
-    
 }
+
+// ANCHOR Info Area (header)
+
 
 .btn {
     background-color: $color-complimentary-secondary;
