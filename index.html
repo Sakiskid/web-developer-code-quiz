@@ -14,40 +14,60 @@
 
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col">
-        test
-      </div>
-    </div>
 
     <!-- Main Game Area -->
-    <main class="row quiz-area">
-      <div class="col">
+    <main class="row" id="quiz-area">
+      <div class="col h-100">
+
         <!-- Header -->
-        <header class="row">
+        <header class="row h-25">
           <div class="col">
-            <h1>Web Development Coding Quiz!</h1>
+            <h1 id="quiz-question">Web Development Coding Quiz!</h1>
           </div>
         </header>
-        <!-- Buttons -->
-        <section class="row">
+
+        <!-- Description Text -->
+        <div class="row h-25">
           <div class="col">
-            <div class="row">
-              <div class="col">
-                <button type="button" class="btn">Option 1</button>
-                <button type="button" class="btn">Option 3</button>
-              </div>
-              <div class="col">
-                <button type="button" class="btn">Option 2</button>
-                <button type="button" class="btn">Option 4</button>
-              </div>
+            <p id="description-text">Press start to start the quiz!</p>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <section class="h-50" id="buttons-wrapper">
+          <!-- Main Menu Buttons -->
+          <div class="row" id="buttons-menu">
+            <div class="col">
+              <button type="button" class="btn h-100" id="buttons-menu__start">Start Quiz!</button>
+            </div>
+          </div>
+          <!-- In-Quiz Buttons -->
+          <div class="row" id="buttons-answers">
+            <div class="col h-100">
+              <button type="button" class="btn btn-answer" id="btn-answer-1">Option 1</button>
+              <button type="button" class="btn btn-answer" id="btn-answer-2">Option 2</button>
+            </div>
+            <div class="col h-100">
+              <button type="button" class="btn btn-answer" id="btn-answer-3">Option 3</button>
+              <button type="button" class="btn btn-answer" id="btn-answer-4">Option 4</button>
             </div>
           </div>
         </section>
 
       </div>
     </main>
+
+    <!-- Game Over Screen -->
+    <div class="row" id="game-over">
+      <div class="col">
+        <h1 class="mt-2">Game Over!</h1>
+      </div>
+    </div>
+
   </div>
+
+  <script src="./questions.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
