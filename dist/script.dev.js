@@ -16,19 +16,26 @@
 // ANCHOR DOM Elements & Variables
 var quizAreaEl = document.getElementById("quiz-area");
 var gameOverEl = document.getElementById("game-over");
-var startButtonEl = document.getElementById("buttons-menu__start");
-var menuButtonsEl = document.getElementById("buttons-menu");
-var questionEl = document.getElementById("quiz-question");
-var descriptionTextEl = document.getElementById("description-text");
 var answerButtonsWrapperEl = document.getElementById("buttons-answers");
 var answerButtonsEl = document.getElementsByClassName("btn-answer");
+var descriptionTextEl = document.getElementById("description-text");
+var menuButtonsEl = document.getElementById("buttons-menu");
+var questionEl = document.getElementById("quiz-question");
+var startButtonEl = document.getElementById("buttons-menu__start");
+var timeRemainingEl = document.getElementById('time-remaining');
 var score = 0;
 var questionWorth = 10;
-var timePenalty = 5; // ANCHOR Question Handling
+var timePenalty = 5;
+var allottedTimeAtStart = 90;
+var timeLeft = 0; // ANCHOR Question Handling
 
 var questionsNotYetAsked = [];
 var questions = [];
 var currentQuestion = {};
+
+function init() {
+  addQuestionsToMainScript();
+}
 
 function addQuestionsToMainScript() {
   for (var i = 0; i < questionsToAdd.length; i++) {
@@ -82,12 +89,30 @@ function correctAnswer() {
 
 function wrongAnswer() {
   console.log("Wrong Answer! Too bad.");
+  timeLeft -= 5;
+  updateTimeLeft();
 }
 
 function gameOver() {
   console.log("Game Over! Final Score: ", score);
   gameOverEl.style.display = "flex";
   quizAreaEl.style.display = "none";
+}
+
+function startTimer() {
+  timeLeft = allottedTimeAtStart;
+  var timer = setInterval(function () {
+    timeLeft--;
+    updateTimeLeft();
+  }, 1000);
+}
+
+function updateTimeLeft() {
+  timeRemainingEl.textContent = timeLeft.toString();
+
+  if (timeLeft <= 0) {
+    gameOver();
+  }
 } // ANCHOR Utility Functions
 
 
@@ -101,5 +126,6 @@ startButtonEl.addEventListener('click', function (event) {
   answerButtonsWrapperEl.style.display = "flex";
   score = 0;
   displayNextQuestion();
+  startTimer();
 });
-addQuestionsToMainScript();
+init();
