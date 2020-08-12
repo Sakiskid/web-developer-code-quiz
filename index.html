@@ -15,7 +15,8 @@
 <body>
 
   <header id="header-info">
-    <h2>Time Left: <span id="time-remaining">999</span></h2>
+    <h2>Time Left: <span id="time-remaining"></span></h2>
+    <h2>Points: <span id="score"></span></h2>
 
   </header>
 
@@ -67,14 +68,28 @@
       <div class="row w-100">
         <div class="col">
           <h1 class="mt-2">Game Over!</h1>
-          <div>
-            test
+          <div id="new-high-score">
+            <input type="text" id="high-score-input">
+            <button id="high-score-input-btn">Submit</button>
           </div>
           <div id="high-scores">
             <h2>High Scores: </h2>
-
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Initials</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <input type="text">
         </div>
       </div>
     </div>

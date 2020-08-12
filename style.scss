@@ -34,14 +34,9 @@ h1 {
     // padding-bottom: 20vh;
 }
 
-#quiz-area ::before {
-    width: 50px;
-    height: 50px;
-    background-color: red;
-}
-
 #game-over {
     @extend %game-background;
+    justify-content: center;
     text-align: center;
     width: 100%;
     display: none;
@@ -86,4 +81,11 @@ h1 {
 #buttons-menu__start {
     margin-top: auto;
     height: 25%;
+}
+
+// ANCHOR High Score
+
+#new-high-score {
+    align-content: center;
+    text-align: center;
 }
