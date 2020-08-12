@@ -5,6 +5,8 @@
     1. Layout
     2. Working Quiz (draws questions from a JSON)
     3. saving high scores   
+    4. restart button
+    5. fix stupid css
 
     bonus:
 
@@ -28,26 +30,9 @@ var highScoresEl = document.getElementById("high-scores");
 var highScoreButtonEl = document.getElementById("high-score-input-btn");
 var scoreEl = document.getElementById("score");
 
-// High scores
-var highScore1 = {
-    Name: "",
-    Score: 0,
-    Date: ""
-};
-var highScore2 = {
-    Name: "",
-    Score: 0,
-    Date: ""
-};
-var highScore3 = {
-    Name: "",
-    Score: 0,
-    Date: ""
-};
+var highScores = [];
 
-
-var highScores = []
-
+var highScoreContenderMinRank = 3; // Fancy way of saying you need to be in top 3 to list on the high scores
 var score = 0;
 var totalScore = 0;
 var questionWorth = 10;
@@ -78,20 +63,17 @@ function addQuestionsToMainScript() {
 
 function initializeHighScores() {
     //TODO initialize rest of highscores
-    if(localStorage.getItem("HighScore1")){
-        highScore1 = JSON.parse(localStorage.getItem("HighScore1"));
-    } else {
-        localStorage.setItem("HighScore1", JSON.stringify(highScore1));
-    }
-    if(localStorage.getItem("HighScore2")){
-        highScore2 = JSON.parse(localStorage.getItem("HighScore2"));
-    } else {
-        localStorage.setItem("HighScore2", JSON.stringify(highScore2));
-    }
-    if(localStorage.getItem("HighScore3")){
-        highScore3 = JSON.parse(localStorage.getItem("HighScore3"));
-    } else {
-        localStorage.setItem("HighScore3", JSON.stringify(highScore3));
+    var savedScores = localStorage.getItem("highScores");
+
+    if(savedScores) {
+        savedScores = JSON.parse(savedScores);
+        highScores = [];
+        for(let i = 0; i < savedScores.length; i++){
+            highScores.push(savedScores[i]);
+        }
+    } 
+    else {
+        updateLocallySavedHighScores();
     }
 }
 
@@ -166,7 +148,8 @@ function gameOver() {
     gameOverEl.style.display = "flex";
     quizAreaEl.style.display = "none";
 
-    if (totalScore > highScore3.Score) {
+    if (totalScore > highScores[highScores.length - 1].Score) {
+        // If High Score is greater than the lowest high score
         newHighScore();
     } else {
         showHighScores();
@@ -183,35 +166,48 @@ function saveHighScore() {
     var d = new Date();
     var today = d.getMonth() + "/" + d.getDay() + "/" + d.getFullYear();
 
+    let newScore = {
+        ...highScoreObject,
+    }
+    newScore.Name = highScoreInputElValue;
+    newScore.Score = totalScore;
+    newScore.Date = today;
+    
+    // NOTE High score list can dynamically change because it is an object array. It is sorted every time it's saved.
+    highScores.push(newScore);
+    highScores.sort(function(a, b){return b.Score - a.Score});
     console.log("New high score saved!", totalScore);
+    updateLocallySavedHighScores();
+}
 
-    if(totalScore > highScore1.Score){
-        highScore1.Name = highScoreInputElValue;
-        highScore1.Score = totalScore;
-        highScore1.Date = today;
-        localStorage.setItem("HighScore1", JSON.stringify(highScore1));
-    }
-    else if(totalScore > highScore2.Score) {
-        highScore2.Name = highScoreInputElValue;
-        highScore2.Date = today;
-        highScore2.Score = totalScore;
-        localStorage.setItem("HighScore2", JSON.stringify(highScore2));
-    }
-    else if (totalScore > highScore3.Score) {
-        highScore3.Name = highScoreInputElValue;
-        highScore3.Date = today;
-        highScore3.Score = totalScore;
-        localStorage.setItem("HighScore3", JSON.stringify(highScore3));
-    }
-    else { console.log ("Something went wrong, high score shouldn't be displaying: Score: ", totalScore); }
+function updateLocallySavedHighScores() {
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
 function showHighScores() {
+    var highScoresTableBody = document.getElementById('high-scores-table-body');
     newHighScoreEl.style.display = "none";
     highScoresEl.style.display = "flex";
 
-    
     //TODO for each high score, append it
+    for(let i = 0; i < highScoreContenderMinRank; i++){
+        var newTableRow = document.createElement("tr");
+        var newTableHeaderIndex = document.createElement("th");
+        var newTableDataInitials = document.createElement("td");
+        var newTableDataScore = document.createElement("td");
+        var newTableDataDate = document.createElement("td");
+
+        newTableHeaderIndex.textContent = (i + 1); // Index of first place (0 + 1 = 1st, etc)
+        newTableDataInitials.textContent = highScores[i].Name;
+        newTableDataScore.textContent = highScores[i].Score;
+        newTableDataDate.textContent = highScores[i].Date;
+
+        highScoresTableBody.appendChild(newTableRow);
+        newTableRow.appendChild(newTableHeaderIndex);
+        newTableRow.appendChild(newTableDataInitials);
+        newTableRow.appendChild(newTableDataScore);
+        newTableRow.appendChild(newTableDataDate);
+    }
 }
 
 function startTimer() {
