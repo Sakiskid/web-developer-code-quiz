@@ -1,4 +1,4 @@
-var questionsToAdd = [
+var jsQuestionsToAdd = [
     {
         Question: "What is the correct function to convert the following object into JSON format?",
         Description: "let myCar = {make: 'Pontiac', model: 'G6'};",
@@ -13,5 +13,17 @@ var questionsToAdd = [
         False1: "This is false 1",
         False2: "This is false 2",
         False3: "this is false 3"
+    }
+]
+
+var htmlQuestionsToAdd = [
+    {
+
+    }
+]
+
+var cssQuestionsToAdd = [
+    {
+
     }
 ]

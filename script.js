@@ -4,9 +4,9 @@
 
     1. Layout
     2. Working Quiz (draws questions from a JSON)
-    3. saving high scores   
+    DONE! 3. saving high scores   
     4. restart button
-    5. fix stupid css
+    5. fix stupid css and make it pretty
 
     bonus:
 
@@ -30,6 +30,11 @@ var highScoresEl = document.getElementById("high-scores");
 var highScoreButtonEl = document.getElementById("high-score-input-btn");
 var scoreEl = document.getElementById("score");
 
+var highScoreObject = {
+    Name: "N/A",
+    Score: 0,
+    Date: "N/A"
+}
 var highScores = [];
 
 var highScoreContenderMinRank = 3; // Fancy way of saying you need to be in top 3 to list on the high scores
@@ -45,7 +50,7 @@ var isGameOver = false;
 
 // ANCHOR Question Handling
 let questionsNotYetAsked = [];
-let questions = [];
+let jsQuestions = [];
 let currentQuestion = {};
 
 function init() {
@@ -54,9 +59,9 @@ function init() {
 }
 
 function addQuestionsToMainScript() {
-    for (let i = 0; i < questionsToAdd.length; i++) {
-        questions.push(questionsToAdd[i]);
-        console.log("Current questions: ", questions);
+    for (let i = 0; i < jsQuestionsToAdd.length; i++) {
+        jsQuestions.push(jsQuestionsToAdd[i]);
+        console.log("Current questions: ", jsQuestions[i]);
         questionsNotYetAsked.push(i);
     }
 }
@@ -65,13 +70,13 @@ function initializeHighScores() {
     //TODO initialize rest of highscores
     var savedScores = localStorage.getItem("highScores");
 
-    if(savedScores) {
+    if (savedScores) {
         savedScores = JSON.parse(savedScores);
         highScores = [];
-        for(let i = 0; i < savedScores.length; i++){
+        for (let i = 0; i < savedScores.length; i++) {
             highScores.push(savedScores[i]);
         }
-    } 
+    }
     else {
         updateLocallySavedHighScores();
     }
@@ -81,8 +86,8 @@ function displayNextQuestion() {
     if (questionsNotYetAsked.length === 0) { gameOver(); }
 
     // Choose a random question, then remove it from the available questions index
-    let nextQuestionIndex = random(questionsNotYetAsked.length);
-    currentQuestion = questions[nextQuestionIndex];
+    let nextQuestionIndex = questionsNotYetAsked[random(questionsNotYetAsked.length)];
+    currentQuestion = jsQuestions[nextQuestionIndex];
     questionsNotYetAsked.splice(questionsNotYetAsked.indexOf(nextQuestionIndex), 1);
 
     // Display the question
@@ -148,7 +153,7 @@ function gameOver() {
     gameOverEl.style.display = "flex";
     quizAreaEl.style.display = "none";
 
-    if (totalScore > highScores[highScores.length - 1].Score) {
+    if (totalScore > highScores[highScoreContenderMinRank - 1].Score) {
         // If High Score is greater than the lowest high score
         newHighScore();
     } else {
@@ -172,10 +177,10 @@ function saveHighScore() {
     newScore.Name = highScoreInputElValue;
     newScore.Score = totalScore;
     newScore.Date = today;
-    
+
     // NOTE High score list can dynamically change because it is an object array. It is sorted every time it's saved.
     highScores.push(newScore);
-    highScores.sort(function(a, b){return b.Score - a.Score});
+    highScores.sort(function (a, b) { return b.Score - a.Score });
     console.log("New high score saved!", totalScore);
     updateLocallySavedHighScores();
 }
@@ -190,7 +195,7 @@ function showHighScores() {
     highScoresEl.style.display = "flex";
 
     //TODO for each high score, append it
-    for(let i = 0; i < highScoreContenderMinRank; i++){
+    for (let i = 0; i < highScoreContenderMinRank; i++) {
         var newTableRow = document.createElement("tr");
         var newTableHeaderIndex = document.createElement("th");
         var newTableDataInitials = document.createElement("td");
@@ -213,7 +218,7 @@ function showHighScores() {
 function startTimer() {
     timeLeft = allottedTimeAtStart;
     var timer = setInterval(function () {
-        if(!isGameOver) {
+        if (!isGameOver) {
             timeLeft--;
             updateTimeLeft();
         }
@@ -222,12 +227,12 @@ function startTimer() {
 
 function updateTimeLeft() {
     timeRemainingEl.textContent = timeLeft.toString();
-    if(timeLeft <= 0) {
+    if (timeLeft <= 0) {
         gameOver();
     }
 }
 
-function addScore (int) {
+function addScore(int) {
     score += int;
     scoreEl.textContent = score.toString();
 }

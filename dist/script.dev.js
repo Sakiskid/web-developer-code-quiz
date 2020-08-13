@@ -12,9 +12,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     1. Layout
     2. Working Quiz (draws questions from a JSON)
-    3. saving high scores   
+    DONE! 3. saving high scores   
     4. restart button
-    5. fix stupid css
+    5. fix stupid css and make it pretty
 
     bonus:
 
@@ -35,6 +35,11 @@ var newHighScoreEl = document.getElementById("new-high-score");
 var highScoresEl = document.getElementById("high-scores");
 var highScoreButtonEl = document.getElementById("high-score-input-btn");
 var scoreEl = document.getElementById("score");
+var highScoreObject = {
+  Name: "N/A",
+  Score: 0,
+  Date: "N/A"
+};
 var highScores = [];
 var highScoreContenderMinRank = 3; // Fancy way of saying you need to be in top 3 to list on the high scores
 
@@ -47,7 +52,7 @@ var timeLeft = 0;
 var isGameOver = false; // ANCHOR Question Handling
 
 var questionsNotYetAsked = [];
-var questions = [];
+var jsQuestions = [];
 var currentQuestion = {};
 
 function init() {
@@ -56,9 +61,9 @@ function init() {
 }
 
 function addQuestionsToMainScript() {
-  for (var i = 0; i < questionsToAdd.length; i++) {
-    questions.push(questionsToAdd[i]);
-    console.log("Current questions: ", questions);
+  for (var i = 0; i < jsQuestionsToAdd.length; i++) {
+    jsQuestions.push(jsQuestionsToAdd[i]);
+    console.log("Current questions: ", jsQuestions[i]);
     questionsNotYetAsked.push(i);
   }
 }
@@ -85,8 +90,8 @@ function displayNextQuestion() {
   } // Choose a random question, then remove it from the available questions index
 
 
-  var nextQuestionIndex = random(questionsNotYetAsked.length);
-  currentQuestion = questions[nextQuestionIndex];
+  var nextQuestionIndex = questionsNotYetAsked[random(questionsNotYetAsked.length)];
+  currentQuestion = jsQuestions[nextQuestionIndex];
   questionsNotYetAsked.splice(questionsNotYetAsked.indexOf(nextQuestionIndex), 1); // Display the question
 
   questionEl.textContent = currentQuestion.Question;
@@ -144,7 +149,7 @@ function gameOver() {
   gameOverEl.style.display = "flex";
   quizAreaEl.style.display = "none";
 
-  if (totalScore > highScores[highScores.length - 1].Score) {
+  if (totalScore > highScores[highScoreContenderMinRank - 1].Score) {
     // If High Score is greater than the lowest high score
     newHighScore();
   } else {

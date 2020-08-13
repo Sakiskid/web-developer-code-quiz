@@ -1,6 +1,6 @@
 "use strict";
 
-var questionsToAdd = [{
+var jsQuestionsToAdd = [{
   Question: "What is the correct function to convert the following object into JSON format?",
   Description: "let myCar = {make: 'Pontiac', model: 'G6'};",
   Answer: "JSON.stringify(myCar);",
@@ -14,3 +14,5 @@ var questionsToAdd = [{
   False2: "This is false 2",
   False3: "this is false 3"
 }];
+var htmlQuestionsToAdd = [{}];
+var cssQuestionsToAdd = [{}];
