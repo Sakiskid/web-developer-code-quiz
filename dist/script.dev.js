@@ -41,6 +41,7 @@ var highScoreObject = {
   Date: "N/A"
 };
 var highScores = [];
+var debugMode = false;
 var highScoreContenderMinRank = 3; // Fancy way of saying you need to be in top 3 to list on the high scores
 
 var score = 0;
@@ -87,6 +88,7 @@ function initializeHighScores() {
 function displayNextQuestion() {
   if (questionsNotYetAsked.length === 0) {
     gameOver();
+    return;
   } // Choose a random question, then remove it from the available questions index
 
 
@@ -100,7 +102,6 @@ function displayNextQuestion() {
 }
 
 function displayAnswers() {
-  // FIXME if index 0 question is the first question, then index 0 quesiton is shown again after answering correctly
   var availableButtons = [0, 1, 2, 3];
   var answer = availableButtons[random(availableButtons.length)];
   availableButtons.splice(availableButtons.indexOf(answer), 1);
@@ -118,6 +119,12 @@ function displayAnswers() {
   answerButtonsEl[false1].setAttribute("onclick", "wrongAnswer()");
   answerButtonsEl[false2].setAttribute("onclick", "wrongAnswer()");
   answerButtonsEl[false3].setAttribute("onclick", "wrongAnswer()");
+
+  if (debugMode) {
+    answerButtonsEl[answer].textContent += "<-- Answer!";
+  }
+
+  ;
 } // ANCHOR Game Management Functions
 
 
