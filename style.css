@@ -5,6 +5,27 @@
   border-radius: 30px;
 }
 
+#quiz-area:before, #game-over:before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  height: 100%;
+  width: 100%;
+  border-radius: 30px;
+  box-shadow: 0px 0px 503px #0C5EA6;
+}
+
+#quiz-area:after, #game-over:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border: 4px outset #1F2126;
+  border-radius: 30px;
+  pointer-events: none;
+}
+
 header {
   color: #D91E50;
 }
@@ -23,28 +44,19 @@ h1 {
   text-align: center;
 }
 
-#quiz-area:before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  height: 100%;
-  width: 100%;
+.play-area-bg {
   border-radius: 30px;
-  box-shadow: 0px 0px 503px #0C5EA6;
-}
-
-#quiz-area:after {
-  content: "";
   position: absolute;
+  object-fit: cover;
+  background-image: url(./Assets/double-bubble.png);
+  background-color: white;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  border: 3px inset #1F2126;
-  border-radius: 30px;
-  pointer-events: none;
+  opacity: 0.1;
 }
 
 #game-over {
+  position: relative;
   justify-content: center;
   text-align: center;
   width: 100%;
@@ -56,6 +68,10 @@ h1 {
   position: absolute;
   top: 5%;
   width: 100%;
+}
+
+#quiz-question {
+  padding-top: 10px;
 }
 
 .btn {
@@ -89,4 +105,10 @@ h1 {
 #new-high-score {
   align-content: center;
   text-align: center;
+}
+
+#debug-skip {
+  position: absolute;
+  left: 10%;
+  z-index: 5;
 }

@@ -28,7 +28,7 @@ var gameOverEl = document.getElementById("game-over");
 var answerButtonsWrapperEl = document.getElementById("buttons-answers");
 var answerButtonsEl = document.getElementsByClassName("btn-answer");
 var descriptionTextEl = document.getElementById("description-text");
-var menuButtonsEl = document.getElementById("buttons-menu");
+var menuButtonsEl = document.getElementById("buttons-menu-wrapper");
 var questionEl = document.getElementById("quiz-question");
 var startButtonEl = document.getElementById("buttons-menu__start");
 var timeRemainingEl = document.getElementById("time-remaining");
@@ -42,7 +42,8 @@ var highScoreObject = {
   Date: "N/A"
 };
 var highScores = [];
-var debugMode = false;
+var debugMode = true; //NOTE make sure this is false before going live
+
 var highScoreContenderMinRank = 3; // Fancy way of saying you need to be in top 3 to list on the high scores
 
 var score = 0;
@@ -53,8 +54,11 @@ var allottedTimeAtStart = 90;
 var timeLeft = 0;
 var isGameOver = false; // ANCHOR Question Handling
 
-var questionsNotYetAsked = [];
 var jsQuestions = [];
+var htmlQuestions = [];
+var cssQuestions = [];
+var questionsNotYetAsked = [];
+var currentListOfQuestions = [];
 var currentQuestion = {};
 
 function init() {
@@ -65,8 +69,35 @@ function init() {
 function addQuestionsToMainScript() {
   for (var i = 0; i < jsQuestionsToAdd.length; i++) {
     jsQuestions.push(jsQuestionsToAdd[i]);
+  }
+
+  for (var _i = 0; _i < htmlQuestionsToAdd.length; _i++) {
+    htmlQuestions.push(htmlQuestionsToAdd[_i]);
+  }
+
+  for (var _i2 = 0; _i2 < cssQuestionsToAdd.length; _i2++) {
+    cssQuestions.push(cssQuestionsToAdd[_i2]);
+  }
+}
+
+function chooseWhichQuestionCategory(category) {
+  if (category == "js" || category == "all") {
+    currentListOfQuestions = currentListOfQuestions.concat(jsQuestions);
+  }
+
+  if (category == "html" || category == "all") {
+    currentListOfQuestions = currentListOfQuestions.concat(htmlQuestions);
+  }
+
+  if (category == "css" || category == "all") {
+    currentListOfQuestions = currentListOfQuestions.concat(cssQuestions);
+  }
+
+  for (var i = 0; i < currentListOfQuestions.length; i++) {
     questionsNotYetAsked.push(i);
   }
+
+  reset();
 }
 
 function initializeHighScores() {
@@ -93,7 +124,7 @@ function displayNextQuestion() {
 
 
   var nextQuestionIndex = questionsNotYetAsked[random(questionsNotYetAsked.length)];
-  currentQuestion = jsQuestions[nextQuestionIndex];
+  currentQuestion = currentListOfQuestions[nextQuestionIndex];
   questionsNotYetAsked.splice(questionsNotYetAsked.indexOf(nextQuestionIndex), 1); // Display the question
 
   questionEl.textContent = currentQuestion.Question;
@@ -129,8 +160,10 @@ function displayAnswers() {
 
 
 function reset() {
-  menuButtonsEl.style.display = "none";
   answerButtonsWrapperEl.style.display = "flex";
+  quizAreaEl.style.display = "flex";
+  menuButtonsEl.style.display = "none";
+  gameOverEl.style.display = "none";
   isGameOver = false;
   score = 0;
   totalScore = 0;
@@ -243,13 +276,18 @@ function addScore(_int) {
 function random(length) {
   return Math.floor(Math.random() * length);
 } // ANCHOR Event Listeners
+// startButtonEl.addEventListener('click', function (event) {
+//     reset();
+// });
 
 
-startButtonEl.addEventListener('click', function (event) {
-  reset();
-});
 highScoreButtonEl.addEventListener('click', function (event) {
   saveHighScore();
   showHighScores();
-});
+}); // ANCHOR Debug Functions
+
+function debugSkip() {
+  gameOver();
+}
+
 init();

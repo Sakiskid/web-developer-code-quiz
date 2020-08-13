@@ -20,9 +20,12 @@
 
   </header>
 
+  <button id="debug-skip" onclick="debugSkip()">Skip to end! :)</button>
+
   <div class="container">
     <!-- Main Game Area -->
     <main class="row" id="quiz-area">
+      <div class="play-area-bg"></div>
       <div class="col h-100">
 
         <!-- Title Text -->
@@ -42,9 +45,14 @@
         <!-- Buttons -->
         <section class="h-50" id="buttons-wrapper">
           <!-- Main Menu Buttons -->
-          <div class="row" id="buttons-menu">
-            <div class="col">
-              <button type="button" class="btn h-100" id="buttons-menu__start">Start Quiz!</button>
+          <div class="row w-100  align-self-center" id="buttons-menu-wrapper">
+            <div class="col h-100">
+              <button type="button" class="btn" onclick="chooseWhichQuestionCategory('js')">Javascript Quiz</button>
+              <button type="button" class="btn" onclick="chooseWhichQuestionCategory('html')">HTML Quiz</button>
+            </div>
+            <div class="col h-100">
+              <button type="button" class="btn" onclick="chooseWhichQuestionCategory('css')">CSS Quiz</button>
+              <button type="button" class="btn" onclick="chooseWhichQuestionCategory('all')">Test me on everything!</button>
             </div>
           </div>
           <!-- In-Quiz Buttons -->
@@ -65,6 +73,7 @@
 
     <!-- Game Over Screen -->
     <div id="game-over">
+      <div class="play-area-bg"></div>
       <div class="row w-100">
         <div class="col">
           <h1 class="mt-2">Game Over!</h1>
@@ -87,6 +96,9 @@
               </tbody>
             </table>
           </div>
+          <button onclick="reset()">
+            Click to restart!
+          </button>
         </div>
       </div>
     </div>

@@ -11,9 +11,29 @@ $font-fancy: 'Crimson Text', serif;
 %game-background {
     height: 60vh;
     margin-top: 20vh;
-    // background-color: $color-complimentary-primary;
     background: $gradient-complimentary-primary;
     border-radius: 30px;
+}
+
+%game-area-light--fx {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0px 0px 503px $color-primary;
+}
+
+%game-area-border--fx {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: 4px outset $color-base;
+    border-radius: 30px;
+    pointer-events: none;
 }
 
 header {
@@ -33,38 +53,42 @@ h1 {
     @extend %game-background;
     position: relative;
     text-align: center;
-    // background: url(./Assets/double-bubble.png);
-    // background-blend-mode: ;
-    // padding-bottom: 20vh;
 }
 
 #quiz-area:before {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    height: 100%;
-    width: 100%;
-    border-radius: 30px;
-    box-shadow: 0px 0px 503px $color-primary;
+    @extend %game-area-light--fx
 }
 
 #quiz-area:after {
-    content: "";
+    @extend %game-area-border--fx
+}
+
+.play-area-bg {
+    border-radius: 30px;
     position: absolute;
+    object-fit: cover;
+    background-image: url(./Assets/double-bubble.png);
+    background-color: white;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    border: 3px inset $color-base;
-    border-radius: 30px;
-    pointer-events: none;
+    opacity: 0.1;
 }
 
 #game-over {
     @extend %game-background;
+    position: relative;
     justify-content: center;
     text-align: center;
     width: 100%;
     display: none;
+}
+
+#game-over:before {
+    @extend %game-area-light--fx;
+}
+
+#game-over:after {
+    @extend %game-area-border--fx;
 }
 
 // ANCHOR Info Area (header)
@@ -73,6 +97,10 @@ h1 {
     position: absolute;
     top: 5%;
     width: 100%;
+}
+
+#quiz-question {
+    padding-top: 10px;
 }
 
 // ANCHOR Buttons
@@ -114,4 +142,12 @@ h1 {
 #new-high-score {
     align-content: center;
     text-align: center;
+}
+
+// ANCHOR Debug
+
+#debug-skip {
+    position: absolute;
+    left: 10%;
+    z-index: 5;
 }
