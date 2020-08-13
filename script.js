@@ -6,7 +6,8 @@
     2. Working Quiz (draws questions from a JSON)
     DONE! 3. saving high scores   
     4. restart button
-    5. fix stupid css and make it pretty
+    5. fix stupid css and make it pretty with ANIMATIONS!!!
+    6. add questions!
 
     bonus:
 
@@ -62,7 +63,6 @@ function init() {
 function addQuestionsToMainScript() {
     for (let i = 0; i < jsQuestionsToAdd.length; i++) {
         jsQuestions.push(jsQuestionsToAdd[i]);
-        console.log("Current questions: ", jsQuestions[i]);
         questionsNotYetAsked.push(i);
     }
 }

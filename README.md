@@ -21,7 +21,7 @@
 4. Added Game Over Screen
 
 ### Things I learned
-
+- How to use Psuedoelements! They are awesome!!! I used them to create the main #quiz-area
 
 
 
