@@ -42,7 +42,7 @@ var highScoreObject = {
   Date: "N/A"
 };
 var highScores = [];
-var debugMode = true; //NOTE make sure this is false before going live
+var debugMode = false; //NOTE make sure this is false before going live
 
 var highScoreContenderMinRank = 5; // Fancy way of saying you need to be in top 3 to list on the high scores
 

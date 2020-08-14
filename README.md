@@ -1,12 +1,12 @@
-![Super Password Generator](preview.png)
+![Web Developer Coding Quiz](webdevquiz.gif)
 
 ---
 
 # Web Developer Coding Quiz
 
-### [Click Here To use ](link)
+### [Click Here To Play](link)
 
-#### **DATE** 
+#### **8/13/2020** 
 
 
 ## Features
