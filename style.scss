@@ -118,18 +118,6 @@ h1 {
     border: 3px outset $color-orange-compliment;
 }
 
-.btn-answer {
-    height: 40%;
-}
-
-@media only screen and (max-device-width: 480px) {
-
-}
-
-#buttons-wrapper {
-
-}
-
 #buttons-answers { 
     height: 100%;
     display: none;
@@ -140,6 +128,19 @@ h1 {
     height: 100%;
     margin-top: 200px;
     padding-left: 20px;
+}
+
+.btn-answer {
+    height: 40%;
+    position: relative;
+}
+
+.btn-answer-wrong {
+    background-color: red;
+}
+
+.btn-answer-correct {
+    background-color: green;
 }
 
 // ANCHOR High Score

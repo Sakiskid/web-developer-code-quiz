@@ -88,10 +88,6 @@ h1 {
   border: 3px outset #F2DA50;
 }
 
-.btn-answer {
-  height: 40%;
-}
-
 #buttons-answers {
   height: 100%;
   display: none;
@@ -102,6 +98,19 @@ h1 {
   height: 100%;
   margin-top: 200px;
   padding-left: 20px;
+}
+
+.btn-answer {
+  height: 40%;
+  position: relative;
+}
+
+.btn-answer-wrong {
+  background-color: red;
+}
+
+.btn-answer-correct {
+  background-color: green;
 }
 
 #new-high-score {

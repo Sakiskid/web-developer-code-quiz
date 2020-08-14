@@ -146,10 +146,15 @@ function displayAnswers() {
   answerButtonsEl[false1].textContent = currentQuestion.False1;
   answerButtonsEl[false2].textContent = currentQuestion.False2;
   answerButtonsEl[false3].textContent = currentQuestion.False3;
-  answerButtonsEl[answer].setAttribute("onclick", "correctAnswer()");
-  answerButtonsEl[false1].setAttribute("onclick", "wrongAnswer()");
-  answerButtonsEl[false2].setAttribute("onclick", "wrongAnswer()");
-  answerButtonsEl[false3].setAttribute("onclick", "wrongAnswer()");
+  answerButtonsEl[answer].setAttribute("onclick", "correctAnswer(this.id)");
+  answerButtonsEl[false1].setAttribute("onclick", "wrongAnswer(this.id)");
+  answerButtonsEl[false2].setAttribute("onclick", "wrongAnswer(this.id)");
+  answerButtonsEl[false3].setAttribute("onclick", "wrongAnswer(this.id)");
+
+  for (var i = 0; i < answerButtonsEl.length; i++) {
+    answerButtonsEl[i].classList.remove("btn-answer-wrong");
+    answerButtonsEl[i].classList.remove("btn-answer-correct");
+  }
 
   if (debugMode) {
     answerButtonsEl[answer].textContent += "<-- Answer!";
@@ -171,14 +176,16 @@ function reset() {
   startTimer();
 }
 
-function correctAnswer() {
-  console.log("Answer Correct!");
+function correctAnswer(buttonID) {
+  document.getElementById(buttonID).classList.add("btn-answer-correct");
   addScore(questionWorth);
-  displayNextQuestion();
+  setTimeout(function () {
+    displayNextQuestion();
+  }, 1000);
 }
 
-function wrongAnswer() {
-  console.log("Wrong Answer! Too bad.");
+function wrongAnswer(buttonID) {
+  document.getElementById(buttonID).classList.add("btn-answer-wrong");
   timeLeft -= 5;
   updateTimeLeft();
 }
