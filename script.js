@@ -39,7 +39,7 @@ var highScoreObject = {
 var highScores = [];
 
 var debugMode = true; //NOTE make sure this is false before going live
-var highScoreContenderMinRank = 3; // Fancy way of saying you need to be in top 3 to list on the high scores
+var highScoreContenderMinRank = 5; // Fancy way of saying you need to be in top 3 to list on the high scores
 var score = 0;
 var totalScore = 0;
 var questionWorth = 10;
@@ -177,7 +177,7 @@ function gameOver() {
     gameOverEl.style.display = "flex";
     quizAreaEl.style.display = "none";
 
-    if (totalScore > highScores[highScoreContenderMinRank - 1].Score) {
+    if (totalScore > highScores[highScores.length - 1].Score || highScores.length < highScoreContenderMinRank) {
         // If High Score is greater than the lowest high score
         newHighScore();
     } else {
@@ -218,8 +218,15 @@ function showHighScores() {
     newHighScoreEl.style.display = "none";
     highScoresEl.style.display = "flex";
 
+    // This code limits only highScoreContenderMinRank amount of hih scorers on the screen
+    var timesToIterate = 0;
+    if(highScores.length > highScoreContenderMinRank) {
+        timesToIterate = highScoreContenderMinRank
+    } else {
+
+    }
     //TODO for each high score, append it
-    for (let i = 0; i < highScoreContenderMinRank; i++) {
+    for (let i = 0; i < highScores.length; i++) {
         var newTableRow = document.createElement("tr");
         var newTableHeaderIndex = document.createElement("th");
         var newTableDataInitials = document.createElement("td");
@@ -266,11 +273,6 @@ function random(length) {
     return Math.floor(Math.random() * length);
 }
 
-// ANCHOR Event Listeners
-// startButtonEl.addEventListener('click', function (event) {
-//     reset();
-// });
-
 highScoreButtonEl.addEventListener('click', function (event) {
     saveHighScore();
     showHighScores();
@@ -281,4 +283,11 @@ function debugSkip() {
     gameOver();
 }
 
+function checkIfDebug(){
+    if(debugMode) {
+        document.getElementById('debug-skip').style.display = "flex";
+    }
+}
+
 init();
+checkIfDebug();

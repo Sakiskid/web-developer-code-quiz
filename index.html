@@ -32,15 +32,11 @@
         <section class="row h-25">
           <div class="col">
             <h1 id="quiz-question">Web Development Coding Quiz!</h1>
+            <p id="description-text">Press start to start the quiz!</p>
           </div>
         </section>
 
         <!-- Description Text -->
-        <section class="row h-25">
-          <div class="col">
-            <p id="description-text">Press start to start the quiz!</p>
-          </div>
-        </section>
 
         <!-- Buttons -->
         <section class="h-50" id="buttons-wrapper">
@@ -77,12 +73,13 @@
       <div class="row w-100">
         <div class="col">
           <h1 class="mt-2">Game Over!</h1>
-          <div id="new-high-score">
+          <div class="justify-content-center" id="new-high-score">
             <input type="text" id="high-score-input">
             <button id="high-score-input-btn">Submit</button>
           </div>
           <div id="high-scores">
             <h2>High Scores: </h2>
+            <br>
             <table class="table">
               <thead>
                 <tr>
@@ -96,9 +93,6 @@
               </tbody>
             </table>
           </div>
-          <button onclick="reset()">
-            Click to restart!
-          </button>
         </div>
       </div>
     </div>

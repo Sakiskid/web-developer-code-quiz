@@ -100,7 +100,11 @@ h1 {
 }
 
 #quiz-question {
-    padding-top: 10px;
+    padding-top: 40px;
+}
+
+#description-text {
+    font-size: 2em;
 }
 
 // ANCHOR Buttons
@@ -118,23 +122,24 @@ h1 {
     height: 40%;
 }
 
+@media only screen and (max-device-width: 480px) {
+
+}
+
 #buttons-wrapper {
-    // padding-top: 100px;
+
 }
 
 #buttons-answers { 
     height: 100%;
     display: none;
-    // padding-top: 10%;
+    margin-top: 100px;
 }
 
-#buttons-menu {
-    height: 25%;
-}
-
-#buttons-menu__start {
-    margin-top: auto;
-    height: 25%;
+#buttons-menu-wrapper {
+    height: 100%;
+    margin-top: 200px;
+    padding-left: 20px;
 }
 
 // ANCHOR High Score
@@ -147,6 +152,7 @@ h1 {
 // ANCHOR Debug
 
 #debug-skip {
+    display: none;
     position: absolute;
     left: 10%;
     z-index: 5;
