@@ -1,20 +1,3 @@
-/*
-
-    // TODO 
-
-    1. Layout
-    2. Working Quiz (draws questions from a JSON)
-    DONE! 3. saving high scores   
-    4. restart button
-    5. fix stupid css and make it pretty with ANIMATIONS!!!
-    6. add questions!
-
-    bonus:
-
-    multiple categories (html, css, javascript, all)
-
-*/
-
 
 // ANCHOR DOM Elements & Variables
 var quizAreaEl = document.getElementById("quiz-area");
@@ -88,7 +71,6 @@ function chooseWhichQuestionCategory (category) {
 }
 
 function initializeHighScores() {
-    //TODO initialize rest of highscores
     var savedScores = localStorage.getItem("highScores");
 
     if (savedScores) {
@@ -232,7 +214,6 @@ function showHighScores() {
     } else {
 
     }
-    //TODO for each high score, append it
     for (let i = 0; i < highScores.length; i++) {
         var newTableRow = document.createElement("tr");
         var newTableHeaderIndex = document.createElement("th");

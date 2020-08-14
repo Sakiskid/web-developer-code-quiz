@@ -8,15 +8,18 @@
 
 #### **8/13/2020** 
 
+## Description:
+Quiz your web development knowledge. You can choose to study Javascript, HTML, CSS, or if you're feeling confident you can try your hand at all of the questions. You have 90 seconds to finish the quiz, good luck!
 
 ## Features
 - Multiple categories of questions (choose all of them to score even more points!)
 - Locally stored leaderboard
 - Randomized answer positions (no cheating by memorizing positions)
 - Modular questions and leaderboard so they can be easily modified
+- Debug Mode for designers (type `debugMode = true` in console)
 
 ##### Noteworthy:
-
+- A difficult part of this project was actually coming up with good, fair questions and answers to populate the quiz.
 
 ## Execution:
 1. Created HTML / CSS Layout
@@ -29,18 +32,5 @@
 
 ### Things I learned
 - How to use Psuedoelements! They are awesome!!! I used them to create the main #quiz-area
-
-
-
-
-#notes for me:
-
-correct answer:
-1. increase score
-2. 
-
-incorrect answer:
-1. time is subtracted from clock
-
-game over:
-1. add time to score to get final score
+- Learned more about objects and how they interact with arrays and localstorage
+- How to manipulate buttons and change them at real-time so depending on the content they do different things

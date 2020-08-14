@@ -6,22 +6,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-/*
-
-    // TODO 
-
-    1. Layout
-    2. Working Quiz (draws questions from a JSON)
-    DONE! 3. saving high scores   
-    4. restart button
-    5. fix stupid css and make it pretty with ANIMATIONS!!!
-    6. add questions!
-
-    bonus:
-
-    multiple categories (html, css, javascript, all)
-
-*/
 // ANCHOR DOM Elements & Variables
 var quizAreaEl = document.getElementById("quiz-area");
 var gameOverEl = document.getElementById("game-over");
@@ -101,7 +85,6 @@ function chooseWhichQuestionCategory(category) {
 }
 
 function initializeHighScores() {
-  //TODO initialize rest of highscores
   var savedScores = localStorage.getItem("highScores");
 
   if (savedScores) {
@@ -241,8 +224,7 @@ function showHighScores() {
 
   if (highScores.length > highScoreContenderMinRank) {
     timesToIterate = highScoreContenderMinRank;
-  } else {} //TODO for each high score, append it
-
+  } else {}
 
   for (var i = 0; i < highScores.length; i++) {
     var newTableRow = document.createElement("tr");
